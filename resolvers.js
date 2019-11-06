@@ -1,8 +1,11 @@
 import User from "./models/user";
-import { createSecureServer } from "http2";
+import { getInclusionDirectives } from "apollo-utilities";
 
 export const resolvers = {
   Query: {
+    async getUser(root, { _id }) {
+      return await User.findById(_id);
+    },
     async allUser() {
       return await User.find();
     }

@@ -10,6 +10,7 @@ const typeDefs = `
     }
     
     type Query {
+        getUser(_id: ID!): User
         allUser: [User]
     }
 
