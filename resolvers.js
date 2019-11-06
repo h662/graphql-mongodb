@@ -15,6 +15,9 @@ export const resolvers = {
     },
     async updateUser(root, { _id, input }) {
       return await User.findOneAndUpdate({ _id }, input, { new: true });
+    },
+    async deleteUser(root, { _id }) {
+      return await User.findOneAndDelete({ _id });
     }
   }
 };
