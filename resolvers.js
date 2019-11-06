@@ -1,5 +1,4 @@
 import User from "./models/user";
-import { getInclusionDirectives } from "apollo-utilities";
 
 export const resolvers = {
   Query: {
@@ -13,6 +12,9 @@ export const resolvers = {
   Mutation: {
     async createUser(root, { input }) {
       return await User.create(input);
+    },
+    async updateUser(root, { _id, input }) {
+      return await User.findOneAndUpdate({ _id }, input, { new: true });
     }
   }
 };
