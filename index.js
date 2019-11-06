@@ -1,6 +1,8 @@
 // index.js
 import express from "express";
 import mongoose from "mongoose";
+import graphqlHTTP from "express-graphql";
+import schema from "./schema";
 
 const app = express();
 const port = 3000;
@@ -15,6 +17,14 @@ app.get("/", (req, res) => {
     msg: "Hello"
   });
 });
+
+app.use(
+  `/graphql`,
+  graphqlHTTP({
+    schema: schema,
+    graphiql: true
+  })
+);
 
 app.listen(port, () => {
   console.log(`Listen PORT : ${port}`);
